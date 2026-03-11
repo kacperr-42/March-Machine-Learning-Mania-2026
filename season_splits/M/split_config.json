@@ -1,0 +1,51 @@
+{
+  "dataset": "M",
+  "input_path": "m_data.csv",
+  "output_dir": "season_splits\\M",
+  "season_col": "Season",
+  "day_col": "DayNum",
+  "date_col": null,
+  "game_id_col": "GameID",
+  "sort_cols": [
+    "Season",
+    "DayNum",
+    "GameID",
+    "_row_order"
+  ],
+  "resolved_split_params": {
+    "train_seasons_count": 22,
+    "test_seasons": 1,
+    "valid_seasons": 1,
+    "notes": []
+  },
+  "train_seasons": [
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "test_seasons": [
+    2025
+  ],
+  "valid_seasons": [
+    2026
+  ]
+}
