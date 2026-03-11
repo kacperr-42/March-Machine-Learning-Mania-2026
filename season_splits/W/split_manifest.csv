@@ -1,0 +1,4 @@
+dataset,split_name,role,path,rows,first_season,last_season,min_daynum,max_daynum,min_date,max_date
+W,season_split,train,season_splits\W\train.csv,77158,2010,2024,0,155,,
+W,season_split,test,season_splits\W\test.csv,5511,2025,2025,0,153,,
+W,season_split,valid,season_splits\W\valid.csv,5065,2026,2026,0,118,,
