@@ -1,4 +1,10 @@
-dataset,split_name,role,path,rows,first_season,last_season,min_daynum,max_daynum,min_date,max_date
-W,season_split,train,season_splits\W\train.csv,77158,2010,2024,0,155,,
-W,season_split,test,season_splits\W\test.csv,5511,2025,2025,0,153,,
-W,season_split,valid,season_splits\W\valid.csv,5065,2026,2026,0,118,,
+dataset,family,role,path,rows,first_season,last_season,min_daynum,max_daynum,min_date,max_date
+W,strength_model,train,season_splits\W\strength_model\train.csv,76264,2010.0,2024.0,0.0,132.0,,
+W,strength_model,test,season_splits\W\strength_model\test.csv,5444,2025.0,2025.0,0.0,132.0,,
+W,strength_model,valid,season_splits\W\strength_model\valid.csv,5065,2026.0,2026.0,0.0,118.0,,
+W,tournament_model,train,season_splits\W\tournament_model\train.csv,894,2010.0,2024.0,135.0,155.0,,
+W,tournament_model,test,season_splits\W\tournament_model\test.csv,67,2025.0,2025.0,135.0,153.0,,
+W,tournament_model,valid,season_splits\W\tournament_model\valid.csv,0,,,,,,
+W,tournament_context_regular,train_context,season_splits\W\tournament_model\context_regular\train_context.csv,76264,2010.0,2024.0,0.0,132.0,,
+W,tournament_context_regular,test_context,season_splits\W\tournament_model\context_regular\test_context.csv,81708,2010.0,2025.0,0.0,132.0,,
+W,tournament_context_regular,valid_context,season_splits\W\tournament_model\context_regular\valid_context.csv,86773,2010.0,2026.0,0.0,132.0,,
