@@ -6,6 +6,7 @@
   "day_col": "DayNum",
   "date_col": null,
   "game_id_col": "GameID",
+  "tournament_col": "GameType",
   "sort_cols": [
     "Season",
     "DayNum",
