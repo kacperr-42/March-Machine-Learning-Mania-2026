@@ -1,7 +1,7 @@
 {
   "dataset": "W",
   "input_path": "w_data.csv",
-  "output_dir": "season_splits\\W",
+  "output_dir": "season_splits/W",
   "season_col": "Season",
   "day_col": "DayNum",
   "date_col": null,
