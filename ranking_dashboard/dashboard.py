@@ -50,7 +50,9 @@ def save_snapshot(current: pd.DataFrame, history: pd.DataFrame) -> pd.DataFrame:
         hist_comp = history.iloc[-len(current):].drop(columns="FetchDate").reset_index(drop=True)
         if current_comp.equals(hist_comp):
             return history
+    
     updated = pd.concat([history, current], ignore_index=True)
+    print(f"number of new rows: {update.shape[0]-current.shape[0]}")
     updated.to_csv(HISTORY_FILE, index=False)
     return updated
 
