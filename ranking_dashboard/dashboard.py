@@ -34,6 +34,7 @@ def fetch_leaderboard(api) -> pd.DataFrame:
             csv_name = z.namelist()[0]
             with z.open(csv_name) as f:
                 df = pd.read_csv(f)
+    print("saved")
     df = df.loc[df["TeamName"].isin(USERNAMES), ['TeamName', 'Rank', 'Score']]
     df['FetchDate'] = datetime.now()
     return df
