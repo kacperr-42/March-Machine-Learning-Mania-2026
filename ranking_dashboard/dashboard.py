@@ -68,17 +68,17 @@ st.title("🏀 March Madness — Score Tracker")
 # Przycisk + info
 col_btn, col_info = st.columns([1, 3])
 with col_btn:
-    if st.button("🔄 Pobierz nowy snapshot", type="primary"):
+    if st.button("🔄 Fetch new snapshot", type="primary"):
         st.rerun()
 with col_info:
     if not history.empty:
-        st.caption(f"Ostatni snapshot: {history['FetchDate'].max().strftime('%Y-%m-%d %H:%M')}")
+        st.caption(f"Last snapshot: {history['FetchDate'].max().strftime('%Y-%m-%d %H:%M')}")
 
 if history.empty:
-    st.info("Brak danych — kliknij **Pobierz nowy snapshot** żeby zacząć śledzić.")
+    st.info("No data yet — click **Fetch new snapshot** to start tracking.")
 else:
     # Metryki — każdy gracz w osobnej kolumnie
-    st.subheader("📊 Aktualny ranking")
+    st.subheader("Current Standings")
     latest_ts = history["FetchDate"].max()
     latest = (
         history[history["FetchDate"] == latest_ts]
@@ -101,22 +101,22 @@ else:
             st.metric(
                 label=row["TeamName"],
                 value=f"#{int(row['Rank'])}",
-                delta=f"{delta_rank:+d} pozycji" if delta_rank else None,
+                delta=f"{delta_rank:+d} Ranks" if delta_rank else None,
                 delta_color="normal",
             )
             st.caption(f"Score: {row['Score']:.4f}")
 
     # Wykresy w tabach
-    tab1, tab2 = st.tabs(["📈 Score w czasie", "🏆 Pozycja w czasie"])
+    tab1, tab2 = st.tabs(["📈 Score over time", "🏆 Rank over time"])
 
     with tab1:
         fig_score = px.line(
             history, x="FetchDate", y="Score", color="TeamName",
             markers=True,
-            labels={"FetchDate": "Czas", "Score": "Brier Score", "TeamName": "Gracz"},
+            labels={"FetchDate": "Time", "Score": "Brier Score", "TeamName": "Participant"},
         )
         fig_score.update_layout(
-            yaxis_title="Brier Score (niżej = lepiej)",
+            yaxis_title="Brier Score",
             hovermode="x unified",
         )
         st.plotly_chart(fig_score, use_container_width=True)
@@ -125,10 +125,10 @@ else:
         fig_rank = px.line(
             history, x="FetchDate", y="Rank", color="TeamName",
             markers=True,
-            labels={"FetchDate": "Czas", "Rank": "Pozycja", "TeamName": "Gracz"},
+            labels={"FetchDate": "Time", "Score": "Brier Score", "TeamName": "Participant"},
         )
         fig_rank.update_layout(
-            yaxis_title="Pozycja (niżej = lepiej)",
+            yaxis_title="Rank",
             yaxis_autorange="reversed",
             hovermode="x unified",
         )
