@@ -6,6 +6,7 @@ from datetime import datetime
 from pathlib import Path
 import tempfile, zipfile
 from streamlit_autorefresh import st_autorefresh
+import os
 
 st.set_page_config(page_title="March Madness Tracker", layout="wide")
 
