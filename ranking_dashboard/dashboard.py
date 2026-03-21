@@ -101,8 +101,8 @@ else:
             st.metric(
                 label=row["TeamName"],
                 value=f"#{int(row['Rank'])}",
-                delta=f"{delta_rank:+d} Ranks" if delta_rank else None,
-                delta_color="inverse",
+                delta=f"{-delta_rank:+d} Ranks" if delta_rank else None,
+                delta_color="normal",
             )
             st.caption(f"Score: {row['Score']:.4f}")
 
