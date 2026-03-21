@@ -16,8 +16,7 @@ USERNAMES = [
     "Stefan Gajda",
     "Norbert Gościcki",
 ]
-HISTORY_FILE = Path("score_history.csv")
-
+HISTORY_FILE = Path(__file__).parent.parent/'score_history.csv'
 api = get_api()
 
 #--------------- function ---------------

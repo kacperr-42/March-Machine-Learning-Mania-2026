@@ -6,13 +6,11 @@ from datetime import datetime
 from pathlib import Path
 import tempfile, zipfile
 from streamlit_autorefresh import st_autorefresh
-import os
 
 st.set_page_config(page_title="March Madness Tracker", layout="wide")
 
 @st.cache_resource
 def get_api():
-    os.environ["KAGGLE_API_TOKEN"]=st.secrets["KAGGLE_API_TOKEN"]
     api = KaggleApi()
     api.authenticate()
     return api
@@ -25,7 +23,7 @@ USERNAMES = [
     "Stefan Gajda",
     "Norbert Gościcki",
 ]
-HISTORY_FILE = Path("score_history.csv")
+HISTORY_FILE = Path(__file__).parent.parent/'score_history.csv'
 api = get_api()
 
 # --------------- FUNCTIONS ---------------
@@ -56,7 +54,7 @@ def save_snapshot(current: pd.DataFrame, history: pd.DataFrame) -> pd.DataFrame:
     return updated
 
 # --------------- DATA ---------------
-st_autorefresh(interval=20 * 60 * 1000, key="refresh")
+st_autorefresh(interval=20 * 60 * 1000, key="refresh") #auto-feching without having to refesh
 
 current = fetch_leaderboard(api)
 history = load_history()
@@ -64,88 +62,7 @@ history = save_snapshot(current, history)
 
 
 
-
 # --------------- UI ---------------
-
-
-# col1, col2 = st.columns([1, 1])
-
-# with col1:
-#     st.title("🏀 March Madness — Score Tracker")
-
-#     if not history.empty:
-#         # Briar w czasie
-#         st.subheader("📈 Score w czasie")
-#         fig_score = px.line(
-#             history,
-#             x="FetchDate",
-#             y="Score",
-#             color="TeamName",
-#             markers=True,
-#             labels={"FetchDate": "Czas", "Score": "Briar Score", "TeamName": "Gracz"},
-#         )
-#         fig_score.update_layout(
-#             yaxis_title="Briar Score (niżej = lepiej)",
-#             hovermode="x unified",
-#         )
-#         st.plotly_chart(fig_score, use_container_width=True)
-
-      
-
-
-# with col2:
-#      # st.subheader("⚙️ Panel")
-#     if st.button("🔄 Pobierz nowy snapshot", type="primary", use_container_width=True):
-#         with st.spinner("Pobieram leaderboard z Kaggle..."):
-#             current = current
-#             if current.empty:
-#                 st.error("Nie znaleziono żadnego z username'ów na leaderboardzie. Sprawdź USERNAMES i COMPETITION w kodzie.")
-#             else:
-#                 history = history
-#                 st.success(f"Zapisano snapshot ({len(current)} graczy)")
-#                 st.rerun()
-
-
-#     if history.empty:
-#         st.info("Brak danych — kliknij **Pobierz nowy snapshot** żeby zacząć śledzić.")
-#     else:
-
-#         # Aktualny ranking 
-#         st.subheader("📊 Aktualny ranking")
-#         latest_ts = history["FetchDate"].max()
-#         latest = (
-#             history[history["FetchDate"] == latest_ts]
-#             .sort_values("Rank")
-#             .reset_index(drop=True)
-#         )
-#         latest.index += 1
-#         st.dataframe(
-#             latest[["TeamName", "Score", "Rank"]].rename(
-#                 columns={"TeamName": "Gracz", "Score": "Briar Score", "Rank": "Pozycja"}
-#             ),
-#             use_container_width=True,
-#         )
-
-       
-
-#         # Rank w czasie 
-#         st.subheader("🏆 Pozycja w czasie")
-#         fig_rank = px.line(
-#             history,
-#             x="FetchDate",
-#             y="Rank",
-#             color="TeamName",
-#             markers=True,
-#             labels={"FetchDate": "Czas", "Score": "Briar Score", "TeamName": "Gracz"},
-#         )
-#         fig_rank.update_layout(
-#             yaxis_title="Pozycja (niżej = lepiej)",
-#             yaxis_autorange="reversed",
-#             hovermode="x unified",
-#         )
-#         st.plotly_chart(fig_rank, use_container_width=True)
-
-# --------------- UI 2 ---------------
 st.title("🏀 March Madness — Score Tracker")
 
 # Przycisk + info
