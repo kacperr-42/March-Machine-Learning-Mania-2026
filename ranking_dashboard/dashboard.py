@@ -11,6 +11,7 @@ st.set_page_config(page_title="March Madness Tracker", layout="wide")
 
 @st.cache_resource
 def get_api():
+    os.environ["KAGGLE_API_TOKEN"]=st.secrets["KAGGLE_API_TOKEN"]
     api = KaggleApi()
     api.authenticate()
     return api
