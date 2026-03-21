@@ -26,7 +26,7 @@ jobs:
       - run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git pull --rebase
           git add score_history.csv
           git diff --staged --quiet || git commit -m "Automatic update of the data for leaderboard dashboard"
+          git pull --rebase
           git push
