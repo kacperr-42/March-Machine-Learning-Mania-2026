@@ -3,6 +3,7 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 from datetime import datetime
 from pathlib import Path
 import tempfile, zipfile
+import time 
 
 def get_api():
     api = KaggleApi()
@@ -43,6 +44,13 @@ def save_snapshot(current: pd.DataFrame, history: pd.DataFrame) -> pd.DataFrame:
         hist_comp = history.iloc[-len(current):].drop(columns="FetchDate").reset_index(drop=True)
         if current_comp.equals(hist_comp):
             return 
+    time.sleep(300) #it takes a while for all the data to recalculated properly
+    current = fetch_leaderboard(api)
+    current_comp = current.drop(columns="FetchDate").reset_index(drop=True)
+    if current_comp.shape[0]!=len(USERNAMES):
+        raise Exception("Wrong data size")
+
+
     updated = pd.concat([history, current], ignore_index=True)
     updated.to_csv(HISTORY_FILE, index=False)
     return updated
