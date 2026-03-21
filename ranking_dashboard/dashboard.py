@@ -52,7 +52,7 @@ def save_snapshot(current: pd.DataFrame, history: pd.DataFrame) -> pd.DataFrame:
             return history
     
     updated = pd.concat([history, current], ignore_index=True)
-    print(f"number of new rows: {update.shape[0]-current.shape[0]}")
+    print(f"number of new rows: {updated.shape[0]-current.shape[0]}")
     updated.to_csv(HISTORY_FILE, index=False)
     return updated
 
