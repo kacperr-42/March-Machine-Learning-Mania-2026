@@ -1,5 +1,0 @@
-streamlit
-pandas
-plotly
-kaggle
-streamlit_autorefresh
